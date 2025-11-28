@@ -123,6 +123,8 @@ def spit(graph, title):
     - Cleaned clustering histogram bin labeling
     """
     # ig_graph = ig.Graph.TupleList(graph.edges(),directed = graph.is_directed())
+    #comment the line below above in if doing for twitter and comment line below out and 
+    #vice versa 
     ig_graph = nx_to_igraph(graph)
     artists = ig_graph.vs.select(is_artist=True)
 
@@ -222,6 +224,7 @@ def spit(graph, title):
         
     
     # ---- Top 10 PageRank ----
+    
     top_pr_idx = np.argsort(pagerank_scores)[-10:][::-1]
     print("🔴 Top 10 PageRank Nodes:")
     for i in top_pr_idx:
@@ -229,6 +232,7 @@ def spit(graph, title):
         node_id = ig_graph.vs[i]["name"]
         score = pagerank_scores[i]
         print(f"Vertex {i}, UserID={node_id}, PageRank={score}")
+        #comment this out for twitter
         print(get_soundcloud_user(session,client_id=client_id,user_id=node_id))
         
     print("\n")
@@ -241,6 +245,7 @@ def spit(graph, title):
         node_id = ig_graph.vs[i]["name"]
         score = authority[i]
         print(f"Vertex {i}, UserID={node_id}, Authority={score}")
+        #comment this out for twitter
         print(get_soundcloud_user(session,client_id=client_id,user_id=node_id))
     print("\n")
 
@@ -252,6 +257,7 @@ def spit(graph, title):
         node_id = ig_graph.vs[i]["name"]
         score = hub[i]
         print(f"Vertex {i}, UserID={node_id}, Hub={score}")
+        #comment this out for twitter
         print(get_soundcloud_user(session,client_id=client_id,user_id=node_id))
 
     import time
